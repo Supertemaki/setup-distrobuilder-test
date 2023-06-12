@@ -1,5 +1,11 @@
 name: 'Setup Distrobuilder'
 description: 'Install and configure Distrobuilder on the runner'
+author: 'wehagy'
+
+branding:
+  icon: alert-triangle
+  color: red
+
 inputs:
   channel:
     description: 'Snap channel to install Distrobuilder'
