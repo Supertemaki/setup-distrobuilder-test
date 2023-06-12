@@ -1,0 +1,30 @@
+name: 'Setup Distrobuilder'
+description: 'Install and configure Distrobuilder on the runner'
+inputs:
+  channel:
+    description: 'Snap channel to install Distrobuilder'
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Install Distrobuilder if not present
+      if: "${{ inputs.channel == '' }}"
+      shell: bash
+      run: |
+        set -eu
+        if ! snap info distrobuilder | grep "installed"; then
+          sudo snap install distrobuilder --classic
+        fi
+
+    - name: Install/refresh Distrobuilder snap
+      if: "${{ inputs.channel != '' }}"
+      shell: bash
+      run: |
+        set -eu
+        if snap info distrobuilder | grep "installed"; then
+          sudo snap refresh distrobuilder --channel=${{ inputs.channel }}
+        else
+          sudo snap install distrobuilder --classic --channel=${{ inputs.channel }}
+        fi
