@@ -5,7 +5,7 @@ Install [distrobuilder](https://linuxcontainers.org/distrobuilder/introduction/)
 
 ## Usage
 
-```
+```yml
 name: setup-distrobuilder
 
 on:
